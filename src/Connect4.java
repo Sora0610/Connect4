@@ -1,17 +1,19 @@
 package src;
 
 public class Connect4 {
-    private String[][] board;
+    private int[][] board;
     private boolean turns;
 
     public Connect4() {
-        board = new String[6][7];
+        board = new int[6][7];
         turns = true;
     }
 
     //when player plays, input coordinate then update the board;
     public void play(int x, int y, String player) {
-        board[x][y] = player;
+        if (board[x][y-1] == 0 || board[x][y] != 0) {
+            System.out.print("Invalid location");
+        }
     }
 
     //print the board
