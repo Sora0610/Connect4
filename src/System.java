@@ -7,5 +7,5 @@ public class System {
         board = new int[6][7];
     }
 
-
+    
 }
