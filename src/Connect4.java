@@ -1,12 +1,17 @@
 package src;
 
 public class Connect4 {
-    private String[][] board;
+    private char[][] board;
     private boolean turns;
 
     public Connect4() {
-        board = new String[6][7];
+        board = new char[6][7];
         turns = true;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j] = '□';
+            }
+        }
     }
 
     //when player plays, input coordinate then update the board;
