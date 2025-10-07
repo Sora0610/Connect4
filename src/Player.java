@@ -1,16 +1,12 @@
+package src;
+
 public class Player {
-    private String name;
     private boolean turn;
     private String symbol;
 
-    public Player(String name, boolean turn, String symbol){
-        this.name = name;
+    public Player(boolean turn, String symbol){
         this.turn = turn;
         this.symbol = symbol;
-    }
-
-    public String getName(){
-        return this.name;
     }
 
     public boolean getTurn(){
