@@ -17,6 +17,7 @@ public class Main {
             System.out.print("Y: ");
             int y = scan.nextInt();
             game.play(x,y);
+            game.printBoard();
         }
 
         //scan.close();

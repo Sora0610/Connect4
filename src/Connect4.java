@@ -17,7 +17,6 @@ public class Connect4 {
 
     //when player plays, input coordinate then update the board;
     public void play(int x, int y) {
-        // index out of bound when 1,6
         int column = x - 1;
         int row = y - 1;
 
