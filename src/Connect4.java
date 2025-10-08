@@ -17,17 +17,28 @@ public class Connect4 {
 
     //when player plays, input coordinate then update the board;
     public void play(int x, int y) {
-        // index out of bound when 1,1 , can place even if there's nothing under, can replace
-        if (x < 1 || x > 7 || y < 1 || y > 6) {
+        // index out of bound when 1,6
+        int column = x - 1;
+        int row = y - 1;
+
+        if (column < 0 || column >= 7 || row < 0 || row >= 6) {
             System.out.println("Invalid Input");
             return;
         }
 
-        if((board[y-1][x-1] == 0 && board[y-2][x-1] != 0) || board[5][x-1] == 0){
-            board[y-1][x-1] = turns;
-        } else {
+        if (board[row][column]!= 0) {
             System.out.println("Invalid Input");
+            return;
         }
+
+        boolean valid = (row == 5) || (board[row + 1][column] != 0);
+        
+        if (!valid) {
+            System.out.println("Invalid Input");
+            return;
+        }
+
+        board[row][column] = turns;
         turns = -turns;
     }
 
