@@ -11,6 +11,10 @@ public class CheckWinner {
         
         int turns = board[row][column];
 
+        if (turns == 0) {
+            return false;
+        }
+
         for (int[] a : direction) {
             int count = 1 + counter(board, row, column, a[0], a[1], turns) + counter(board, row, column, -a[0], -a[1], turns);
             if (count >= 4) {
