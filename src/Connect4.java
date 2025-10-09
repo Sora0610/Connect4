@@ -50,4 +50,8 @@ public class Connect4 {
             System.out.println();
         }
     }
+
+    public int[][] returnBoard() {
+        return this.board;
+    }
 }
