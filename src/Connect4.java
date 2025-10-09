@@ -15,6 +15,19 @@ public class Connect4 {
         symbols.put(-1, '○');
     }
 
+    // maybe used later
+    public int calculate(int x) {
+        int column = x - 1;
+        int row;
+        for (row = 5; row >= 0; row--) {
+            if (board[row][column] == 0) {
+                return row;
+            }
+        }
+        // will be invalid in play function
+        return -1;
+    }
+
     //when player plays, input coordinate then update the board;
     public void play(int x, int y) {
         int column = x - 1;
