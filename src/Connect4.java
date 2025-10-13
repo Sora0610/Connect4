@@ -67,4 +67,8 @@ public class Connect4 {
     public int[][] returnBoard() {
         return this.board;
     }
+
+    public void resetBoard() {
+        this.board = new int[6][7];
+    }
 }
