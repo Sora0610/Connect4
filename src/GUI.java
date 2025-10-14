@@ -4,10 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GUI extends JFrame {
+    private final int ROWS = 6;
+    private final int COLS = 7;
     private final CellPanel[][] cells = new CellPanel[ROWS][COLS];
     private final JLabel statusLabel = new JLabel("Red's turn");
     private final JLabel scoreLabel = new JLabel("Red: 0 | Yellow: 0");
     private int redScore = 0, yellowScore = 0;
+    private final Connect4 game = new Connect4();
 
     public GUI() {
         setTitle("Connect 4 Game - Group 2B");
@@ -55,8 +58,8 @@ public class GUI extends JFrame {
         statusPanel.add(scoreLabel);
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(createButton("Reset Game", e -> resetBoard(false)));
-        buttonPanel.add(createButton("New Match (Reset Scores)", e -> resetBoard(true)));
+        buttonPanel.add(createButton("Reset Game", e -> game.resetBoard(false)));
+        buttonPanel.add(createButton("New Match (Reset Scores)", e -> game.resetBoard(true)));
 
         controlPanel.add(statusPanel);
         controlPanel.add(buttonPanel);
@@ -80,17 +83,18 @@ public class GUI extends JFrame {
 
             addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent e) {
-                    if (!gameOver && board[0][col] == 0)
+                    if (!gameOver && game.board[0][col] == 0)
                         setBackground(new Color(230, 230, 230));
                 }
 
                 public void mouseExited(MouseEvent e) {
-                    if (board[row][col] == 0)
+                    if (game.board[row][col] == 0)
                         setBackground(Color.WHITE);
                 }
 
                 public void mouseClicked(MouseEvent e) {
                     if (!gameOver)
+                    // call play function from connect4.java
                         dropPiece(col);
                 }
             });
