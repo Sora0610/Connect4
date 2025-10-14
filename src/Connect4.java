@@ -6,22 +6,25 @@ public class Connect4 {
     private int turns;
     private int redScore;
     private int yellowScore;
-    private HashMap<Integer, Character> symbols;
+    // private HashMap<Integer, Character> symbols;
     
     public Connect4() {
         board = new int[6][7];
         turns = 1;
         redScore = 0;
         yellowScore = 0;
-        symbols = new HashMap<>();
-        symbols.put(0, '□');
-        symbols.put(1, '●');
-        symbols.put(-1, '○');
+        // symbols = new HashMap<>();
+        // symbols.put(0, '□');
+        // symbols.put(1, '●');
+        // symbols.put(-1, '○');
     }
 
     // maybe used later
     public int calculate(int x) {
-        int column = x - 1;
+        int column = x;
+        if (column < 0 || column >= 7) {
+            return -1;
+        }
         int row;
         for (row = 5; row >= 0; row--) {
             if (board[row][column] == 0) {
@@ -34,8 +37,8 @@ public class Connect4 {
 
     //when player plays, input coordinate then update the board;
     public int play(int x, int y) {
-        int column = x - 1;
-        int row = y - 1;
+        int column = x;
+        int row = y;
 
         if (column < 0 || column >= 7 || row < 0 || row >= 6) {
             System.out.println("Invalid Input");
@@ -60,14 +63,14 @@ public class Connect4 {
     }
 
     //print the board
-    public void printBoard() {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                System.out.print(symbols.get(board[i][j]));
-            }
-            System.out.println();
-        }
-    }
+    // public void printBoard() {
+    //     for (int i = 0; i < 6; i++) {
+    //         for (int j = 0; j < 7; j++) {
+    //             System.out.print(symbols.get(board[i][j]));
+    //         }
+    //         System.out.println();
+    //     }
+    // }
 
     public int[][] returnBoard() {
         return this.board;
@@ -85,11 +88,11 @@ public class Connect4 {
     }
 
     public void addRed(){
-        redScore++;
+        this.redScore++;
     }
 
     public int getRed(){
-        return redScore;
+        return this.redScore;
     }
 
     public void addYellow(){
@@ -97,10 +100,10 @@ public class Connect4 {
     }
 
     public int getYellow(){
-        return yellowScore;
+        return this.yellowScore;
     }
     
     public int getTurns() {
-        return turns;
+        return this.turns;
     }
 }
