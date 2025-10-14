@@ -8,12 +8,12 @@ public class Connect4 {
     private int yellowScore;
     private HashMap<Integer, Character> symbols;
     private final CheckWinner winner = new CheckWinner();
-
+    
     public Connect4() {
         board = new int[6][7];
         turns = 1;
-        redScore = 1;
-        yellowScore = 1;
+        redScore = 0;
+        yellowScore = 0;
         symbols = new HashMap<>();
         symbols.put(0, '□');
         symbols.put(1, '●');
@@ -84,8 +84,15 @@ public class Connect4 {
         return this.board;
     }
 
-    public void resetBoard() {
+    public void resetBoard(boolean condition) {
         this.board = new int[6][7];
+        if (condition) {
+            redScore = 0;
+            yellowScore = 0;
+        }
+
+        //gameOver = false;
+        turns = 1;
     }
 
     public void addRed(){
@@ -103,4 +110,6 @@ public class Connect4 {
     public int getYellow(){
         return yellowScore;
     }
+    
+
 }
