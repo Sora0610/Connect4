@@ -33,7 +33,7 @@ public class Connect4 {
     }
 
     //when player plays, input coordinate then update the board;
-    public int play(int x, int y, int turn) {
+    public int play(int x, int y) {
         int column = x - 1;
         int row = y - 1;
 
@@ -64,7 +64,7 @@ public class Connect4 {
         // // statusLabel.setText((currentPlayer == 1 ? "Red" : "Yellow") + "'s turn");
 
         board[row][column] = turns;
-        turn = -turn;
+        turns = -turns;
         return 0;
     }
 
