@@ -10,6 +10,7 @@ public class GUI extends JFrame {
     private final JLabel statusLabel = new JLabel("Red's turn");
     private final JLabel scoreLabel = new JLabel("Red: 0 | Yellow: 0");
     private final Connect4 game = new Connect4();
+    private final CheckWinner winner = new CheckWinner();
 
     public GUI() {
         setTitle("Connect 4 Game - Group 2B");
@@ -82,7 +83,7 @@ public class GUI extends JFrame {
 
             addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent e) {
-                    if (!gameOver && game.board[0][col] == 0)
+                    if (!winner.getGameOver() && game.board[0][col] == 0)
                         setBackground(new Color(230, 230, 230));
                 }
 
@@ -93,17 +94,16 @@ public class GUI extends JFrame {
 
                 public void mouseClicked(MouseEvent e, int winner) {
                     int turn = game.getTurns();
-                    if (!gameOver)
-                    // call play function from connect4.java
+                    if (!winner.getGameOver()) {
                         cells[row][col].setColor(turn == 1 ? Color.RED : Color.YELLOW);
-                        if (winner.checkBoard(game.returnBoard(), row, col)) {
-                            updateScoreAndDisplay(winner);
-                            return;
-                        }
-                        statusLabel.setText((turn == 1 ? "Red" : "Yellow") + "'s turn");
-
+                    }
+                    // call play function from connect4.java
+                    if (winner.checkBoard(game.returnBoard(), row, col)) {
+                        updateScoreAndDisplay(winner);
+                        return;
+                    }
+                    statusLabel.setText((turn == 1 ? "Red" : "Yellow") + "'s turn");
                 }
-
             });
         }
 

@@ -7,7 +7,6 @@ public class Connect4 {
     private int redScore;
     private int yellowScore;
     private HashMap<Integer, Character> symbols;
-    private final CheckWinner winner = new CheckWinner();
     
     public Connect4() {
         board = new int[6][7];

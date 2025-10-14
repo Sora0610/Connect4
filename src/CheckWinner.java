@@ -48,4 +48,8 @@ public class CheckWinner {
 
         return count;
     }
+
+    public boolean getGameOver() {
+        return gameOver;
+    }
 }
