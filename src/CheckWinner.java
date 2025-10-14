@@ -7,8 +7,8 @@ public class CheckWinner {
     private boolean gameOver = false;
     
     public boolean checkBoard(int[][] board, int x, int y) {
-        int row = y - 1;
-        int column = x - 1;
+        int row = y;
+        int column = x;
         
         int turns = board[row][column];
 
