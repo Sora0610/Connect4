@@ -98,38 +98,35 @@ public class GUI extends JFrame {
                     int turn = game.getTurns();
                     int column = col;
                     int rows = game.calculate(column);
-                    
-                    // you dont need to put turn as a parameter as it is inside Connect4.java
+                
+                    // Check if the column is full
+                    if (rows == -1 || wincheck.getGameOver()) {
+                        return;
+                    }
+                
                     game.play(column, rows);
-
+                
                     if (!wincheck.getGameOver()) {
-                        if(turn == 1){
+                        if (turn == 1) {
                             cells[rows][column].setColor(Color.RED);
-                        }
-                        else{
+                        } else {
                             cells[rows][column].setColor(Color.YELLOW);
                         }
                         repaint();
                     }
-                    
-                    if (wincheck.checkBoard(game.returnBoard(), rows, column)) {
-                        updateScoreAndDisplay(turn);
-                        return;
-                    }
-
-                    if(turn == 1){
-                        statusLabel.setText("Red's turn");
-                    }
-                    else{
-                        statusLabel.setText("Yellow's turn");
-                    }
-
-                    // do we need this?? i think its the same 
+                
                     if (wincheck.checkBoard(game.returnBoard(), rows, column)) {
                         int win = wincheck.returnWinnerNo(game.returnBoard(), rows, column);
                         updateScoreAndDisplay(win);
+                        return;
                     }
-                }   
+                
+                    if (game.getTurns() == 1) {
+                        statusLabel.setText("Red's turn");
+                    } else {
+                        statusLabel.setText("Yellow's turn");
+                    }
+                }
             });
         }
 
@@ -218,7 +215,6 @@ public class GUI extends JFrame {
         if(winner == 1){
             return 0;
         }
-        
         return 150;
     }
 }
