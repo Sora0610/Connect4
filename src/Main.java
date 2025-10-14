@@ -1,4 +1,4 @@
-package Connect4.src;
+package src;
 import java.util.Scanner;
 import java.lang.System;
 import javax.swing.SwingUtilities;

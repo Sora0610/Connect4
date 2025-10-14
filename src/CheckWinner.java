@@ -1,4 +1,4 @@
-package Connect4.src;
+package src;
 
 public class CheckWinner {
     private static final int[][] direction = {{0, 1}, {1, 0}, {1, 1}, {-1, 1}}; //right, down, right down, right up
