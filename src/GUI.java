@@ -1,4 +1,4 @@
-package src;
+package Connect4.src;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,10 +9,12 @@ public class GUI extends JFrame {
     private final CellPanel[][] cells = new CellPanel[ROWS][COLS];
     private final JLabel statusLabel = new JLabel("Red's turn");
     private final JLabel scoreLabel = new JLabel("Red: 0 | Yellow: 0");
-    private final Connect4 game = new Connect4();
-    private final CheckWinner wincheck = new CheckWinner();
+    private Connect4 game;
+    private CheckWinner wincheck;
 
-    public GUI() {
+    public GUI(Connect4 game, CheckWinner wincheck) {
+        this.game = game;
+        this.wincheck = wincheck;
         setTitle("Connect 4 Game - Group 2B");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -92,20 +94,27 @@ public class GUI extends JFrame {
                         setBackground(Color.WHITE);
                 }
 
-                public void mouseClicked(MouseEvent e, int winner) {
+                public void mouseClicked(MouseEvent e) {
                     int turn = game.getTurns();
+                    int column = col;
+                    int rows = game.calculate(column);
+
+
+                    game.play(column, rows, turn);
+
                     if (!wincheck.getGameOver()) {
                         if(turn == 1){
-                            cells[row][col].setColor(Color.RED);
+                            cells[rows][column].setColor(Color.RED);
                         }
                         else{
-                            cells[row][col].setColor(Color.YELLOW);
+                            cells[rows][column].setColor(Color.YELLOW);
                         }
+                        repaint();
                         
                     }
                     // call play function from connect4.java
-                    if (wincheck.checkBoard(game.returnBoard(), row, col)) {
-                        updateScoreAndDisplay(winner);
+                    if (wincheck.checkBoard(game.returnBoard(), rows, column)) {
+                        updateScoreAndDisplay(turn);
                         return;
                     }
 
@@ -115,7 +124,12 @@ public class GUI extends JFrame {
                     else{
                         statusLabel.setText("Yellow" + "'s turn");
                     }
-                }
+
+                    if (wincheck.checkBoard(game.returnBoard(), rows, column)) {
+                        int win = wincheck.returnWinnerNo(game.returnBoard(), rows, column);
+                        updateScoreAndDisplay(win);
+                    }
+                }   
             });
         }
 

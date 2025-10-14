@@ -1,4 +1,4 @@
-package src;
+package Connect4.src;
 import java.util.HashMap;
 
 public class Connect4 {
@@ -33,7 +33,7 @@ public class Connect4 {
     }
 
     //when player plays, input coordinate then update the board;
-    public int play(int x, int y) {
+    public int play(int x, int y, int turn) {
         int column = x - 1;
         int row = y - 1;
 
@@ -64,7 +64,7 @@ public class Connect4 {
         // // statusLabel.setText((currentPlayer == 1 ? "Red" : "Yellow") + "'s turn");
 
         board[row][column] = turns;
-        turns = -turns;
+        turn = -turn;
         return 0;
     }
 
