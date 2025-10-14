@@ -111,7 +111,7 @@ public class GUI extends JFrame {
         }
     }
     //Victory Pop Out
-        private void showVictoryPopup(String winner) {
+        private void showVictoryPopup(int winner) {
         JDialog dialog = new JDialog(this, "Victory!", true);
         dialog.setUndecorated(true);
         dialog.setLayout(new BorderLayout());
@@ -120,8 +120,13 @@ public class GUI extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
-                Color c1 = winner.equals("Red") ? new Color(255, 200, 200) : new Color(255, 255, 200);
-                Color c2 = winner.equals("Red") ? new Color(255, 100, 100) : new Color(255, 255, 150);
+                if(winner == 1){
+                    Color c1 = new Color(255, 200, 200);
+                    Color c2 = new Color(255, 100, 100);
+                }else{
+                    Color c1 = new Color(255, 255, 200);
+                    Color c2 = new Color(255, 255, 150);
+                }
                 g2d.setPaint(new GradientPaint(0, 0, c1, 0, getHeight(), c2));
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
@@ -133,8 +138,7 @@ public class GUI extends JFrame {
         main.add(Box.createVerticalStrut(40));
         main.add(makeCenteredLabel("🎉🎉🎉", 48));
         main.add(Box.createVerticalStrut(20));
-        main.add(makeCenteredLabel(winner + " Wins!", 42,
-        winner.equals("Red") ? new Color(180, 0, 0) : new Color(180, 150, 0)));
+        main.add(makeCenteredLabel(winner + " Wins!", 42, new Color(180, winnerColor(winner), 0)));
         main.add(Box.createVerticalStrut(30));
         main.add(makeCenteredLabel("Score: Red " + redScore + " - " + yellowScore + " Yellow", 20));
         main.add(Box.createVerticalStrut(30));
@@ -170,5 +174,13 @@ public class GUI extends JFrame {
         scoreLabel.setText("Red: " + game.getRed() + " | Yellow: " + game.getYellow());
         statusLabel.setText(winner + " wins!");
         showVictoryPopup(winner);
+    }
+
+    private int winnerColor(int winner){
+        if(winner == 1){
+            return 0;
+        }
+        
+        return 150;
     }
 }
