@@ -91,11 +91,19 @@ public class GUI extends JFrame {
                         setBackground(Color.WHITE);
                 }
 
-                public void mouseClicked(MouseEvent e) {
+                public void mouseClicked(MouseEvent e, int winner) {
+                    int turn = game.getTurns();
                     if (!gameOver)
                     // call play function from connect4.java
-                        dropPiece(col);
+                        cells[row][col].setColor(turn == 1 ? Color.RED : Color.YELLOW);
+                        if (winner.checkBoard(game.returnBoard(), row, col)) {
+                            updateScoreAndDisplay(winner);
+                            return;
+                        }
+                        statusLabel.setText((turn == 1 ? "Red" : "Yellow") + "'s turn");
+
                 }
+
             });
         }
 
