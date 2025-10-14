@@ -54,15 +54,6 @@ public class Connect4 {
             return -1;
         }
 
-        // cells[row][column].setColor(turns == 1 ? Color.RED : Color.YELLOW);
-
-        // if (winner.checkBoard(row, column)) {
-        //     updateScoreAndDisplay(currentPlayer == 1 ? "Red" : "Yellow");
-        //     return;
-        // }
-
-        // // statusLabel.setText((currentPlayer == 1 ? "Red" : "Yellow") + "'s turn");
-
         board[row][column] = turns;
         turns = -turns;
         return 0;
