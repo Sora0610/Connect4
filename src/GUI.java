@@ -98,9 +98,9 @@ public class GUI extends JFrame {
                     int turn = game.getTurns();
                     int column = col;
                     int rows = game.calculate(column);
-
-
-                    game.play(column, rows, turn);
+                    
+                    // you dont need to put turn as a parameter as it is inside Connect4.java
+                    game.play(column, rows);
 
                     if (!wincheck.getGameOver()) {
                         if(turn == 1){
@@ -110,21 +110,21 @@ public class GUI extends JFrame {
                             cells[rows][column].setColor(Color.YELLOW);
                         }
                         repaint();
-                        
                     }
-                    // call play function from connect4.java
+                    
                     if (wincheck.checkBoard(game.returnBoard(), rows, column)) {
                         updateScoreAndDisplay(turn);
                         return;
                     }
 
                     if(turn == 1){
-                        statusLabel.setText("Red" + "'s turn");
+                        statusLabel.setText("Red's turn");
                     }
                     else{
-                        statusLabel.setText("Yellow" + "'s turn");
+                        statusLabel.setText("Yellow's turn");
                     }
 
+                    // do we need this?? i think its the same 
                     if (wincheck.checkBoard(game.returnBoard(), rows, column)) {
                         int win = wincheck.returnWinnerNo(game.returnBoard(), rows, column);
                         updateScoreAndDisplay(win);
