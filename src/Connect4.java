@@ -34,25 +34,25 @@ public class Connect4 {
     }
 
     //when player plays, input coordinate then update the board;
-    public void play(int x, int y) {
+    public int play(int x, int y) {
         int column = x - 1;
         int row = y - 1;
 
         if (column < 0 || column >= 7 || row < 0 || row >= 6) {
             System.out.println("Invalid Input");
-            return;
+            return -1;
         }
 
         if (board[row][column]!= 0) {
             System.out.println("Invalid Input");
-            return;
+            return -1;
         }
 
         boolean valid = (row == 5) || (board[row + 1][column] != 0);
         
         if (!valid) {
             System.out.println("Invalid Input");
-            return;
+            return -1;
         }
 
         // cells[row][column].setColor(turns == 1 ? Color.RED : Color.YELLOW);
@@ -62,12 +62,11 @@ public class Connect4 {
         //     return;
         // }
 
-        // // currentPlayer = 3 - currentPlayer;
         // // statusLabel.setText((currentPlayer == 1 ? "Red" : "Yellow") + "'s turn");
-        // // return;
 
         board[row][column] = turns;
         turns = -turns;
+        return 0;
     }
 
     //print the board
@@ -111,5 +110,7 @@ public class Connect4 {
         return yellowScore;
     }
     
-
+    public int getTurns() {
+        return turns;
+    }
 }
