@@ -4,7 +4,8 @@ public class CheckWinner {
     private static final int[][] direction = {{0, 1}, {1, 0}, {1, 1}, {-1, 1}}; //right, down, right down, right up
     private static final int rowNumber = 6;
     private static final int columnNumber = 7;
-
+    private boolean gameOver = false;
+    
     public boolean checkBoard(int[][] board, int x, int y) {
         int row = y - 1;
         int column = x - 1;
@@ -18,6 +19,7 @@ public class CheckWinner {
         for (int[] a : direction) {
             int count = 1 + counter(board, row, column, a[0], a[1], turns) + counter(board, row, column, -a[0], -a[1], turns);
             if (count >= 4) {
+                gameOver = true;
                 return true;
             }
         }

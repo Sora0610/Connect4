@@ -4,11 +4,16 @@ import java.util.HashMap;
 public class Connect4 {
     private int[][] board;
     private int turns;
+    private int redScore;
+    private int yellowScore;
     private HashMap<Integer, Character> symbols;
+    private final CheckWinner winner = new CheckWinner();
 
     public Connect4() {
         board = new int[6][7];
         turns = 1;
+        redScore = 1;
+        yellowScore = 1;
         symbols = new HashMap<>();
         symbols.put(0, '□');
         symbols.put(1, '●');
@@ -50,6 +55,17 @@ public class Connect4 {
             return;
         }
 
+        // cells[row][column].setColor(turns == 1 ? Color.RED : Color.YELLOW);
+
+        // if (winner.checkBoard(row, column)) {
+        //     updateScoreAndDisplay(currentPlayer == 1 ? "Red" : "Yellow");
+        //     return;
+        // }
+
+        // // currentPlayer = 3 - currentPlayer;
+        // // statusLabel.setText((currentPlayer == 1 ? "Red" : "Yellow") + "'s turn");
+        // // return;
+
         board[row][column] = turns;
         turns = -turns;
     }
@@ -70,5 +86,21 @@ public class Connect4 {
 
     public void resetBoard() {
         this.board = new int[6][7];
+    }
+
+    public void addRed(){
+        redScore++;
+    }
+
+    public int getRed(){
+        return redScore;
+    }
+
+    public void addYellow(){
+        yellowScore++;
+    }
+
+    public int getYellow(){
+        return yellowScore;
     }
 }

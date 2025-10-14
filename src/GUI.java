@@ -9,7 +9,6 @@ public class GUI extends JFrame {
     private final CellPanel[][] cells = new CellPanel[ROWS][COLS];
     private final JLabel statusLabel = new JLabel("Red's turn");
     private final JLabel scoreLabel = new JLabel("Red: 0 | Yellow: 0");
-    private int redScore = 0, yellowScore = 0;
     private final Connect4 game = new Connect4();
 
     public GUI() {
@@ -163,5 +162,13 @@ public class GUI extends JFrame {
         lbl.setForeground(color);
         lbl.setAlignmentX(Component.CENTER_ALIGNMENT);
         return lbl;
+    }
+
+    private void updateScoreAndDisplay(int winner) {
+        if (winner == 1) game.addRed();
+        else game.addYellow();
+        scoreLabel.setText("Red: " + game.getRed() + " | Yellow: " + game.getYellow());
+        statusLabel.setText(winner + " wins!");
+        showVictoryPopup(winner);
     }
 }
