@@ -9,7 +9,6 @@ public class CheckWinner {
     public boolean checkBoard(int[][] board, int x, int y) {
         int row = y;
         int column = x;
-        
         int turns = board[row][column];
 
         if (turns == 0) {
