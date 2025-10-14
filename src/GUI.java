@@ -83,12 +83,12 @@ public class GUI extends JFrame {
 
             addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent e) {
-                    if (!wincheck.getGameOver() && game.board[0][col] == 0)
+                    if (!wincheck.getGameOver() && game.returnBoard()[0][col] == 0)
                         setBackground(new Color(230, 230, 230));
                 }
 
                 public void mouseExited(MouseEvent e) {
-                    if (game.board[row][col] == 0)
+                    if (game.returnBoard()[row][col] == 0)
                         setBackground(Color.WHITE);
                 }
 
@@ -104,7 +104,7 @@ public class GUI extends JFrame {
                         
                     }
                     // call play function from connect4.java
-                    if (winner.checkBoard(game.returnBoard(), row, col)) {
+                    if (wincheck.checkBoard(game.returnBoard(), row, col)) {
                         updateScoreAndDisplay(winner);
                         return;
                     }
@@ -190,8 +190,11 @@ public class GUI extends JFrame {
     }
 
     private void updateScoreAndDisplay(int winner) {
-        if (winner == 1) game.addRed();
-        else game.addYellow();
+        if (winner == 1) {
+            game.addRed();
+        } else {
+            game.addYellow();
+        }
         scoreLabel.setText("Red: " + game.getRed() + " | Yellow: " + game.getYellow());
         statusLabel.setText(winner + " wins!");
         showVictoryPopup(winner);
