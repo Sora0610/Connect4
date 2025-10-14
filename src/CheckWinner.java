@@ -33,6 +33,13 @@ public class CheckWinner {
         }
         return 0;
     }
+    
+    public String returnWinner(int turns) {
+        if (turns == 1) {
+            return "Red";
+        }
+        return "Yellow";
+    }
 
     public int counter(int[][] board, int row, int column, int rowDirection, int columnDirection, int turns) {
         int count = 0;

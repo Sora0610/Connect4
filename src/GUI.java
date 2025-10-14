@@ -170,7 +170,7 @@ public class GUI extends JFrame {
         main.add(Box.createVerticalStrut(40));
         main.add(makeCenteredLabel("🎉🎉🎉", 48));
         main.add(Box.createVerticalStrut(20));
-        main.add(makeCenteredLabel(winner + " Wins!", 42, new Color(180, winnerColor(winner), 0)));
+        main.add(makeCenteredLabel(wincheck.returnWinner(winner) + " Wins!", 42, new Color(180, winnerColor(winner), 0)));
         main.add(Box.createVerticalStrut(30));
         main.add(makeCenteredLabel("Score: Red " + game.getRed() + " - " + game.getYellow() + " Yellow", 20));
         main.add(Box.createVerticalStrut(30));
@@ -206,8 +206,8 @@ public class GUI extends JFrame {
         } else {
             game.addYellow();
         }
-        scoreLabel.setText("Red: " + game.getRed() + " | Yellow: " + game.getYellow());
-        statusLabel.setText(winner + " wins!");
+        //scoreLabel.setText("Red: " + game.getRed() + " | Yellow: " + game.getYellow());
+        //statusLabel.setText(wincheck.returnWinner(winner) + " wins!");
         showVictoryPopup(winner);
     }
 
