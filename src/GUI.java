@@ -124,8 +124,8 @@ public class GUI extends JFrame {
                         repaint();
                     }
                 
-                    if (wincheck.checkBoard(game.returnBoard(), rows, column)) {
-                        int win = wincheck.returnWinnerNo(game.returnBoard(), rows, column);
+                    if (wincheck.checkBoard(game.returnBoard(), row, column)) {
+                        int win = wincheck.returnWinnerNo(game.returnBoard(), row, column);
                         updateScoreAndDisplay(win);
                         return;
                     }

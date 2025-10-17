@@ -1,4 +1,4 @@
-package Connect4.src;
+package src;
 
 
 public class CheckWinner {
@@ -7,11 +7,8 @@ public class CheckWinner {
     private static final int columnNumber = 7;
     private boolean gameOver = false;
     
-    public boolean checkBoard(int[][] board, int x, int y) {
-        int row = y;
-        int column = x;
+    public boolean checkBoard(int[][] board, int row, int column) {
         int turns = board[row][column];
-
         if (turns == 0) {
             return false;
         }
