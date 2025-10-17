@@ -1,4 +1,4 @@
-package Connect4.src;
+package src;
 
 import javax.swing.*;
 import java.awt.*;
@@ -94,7 +94,7 @@ public class GUI extends JFrame {
 
             addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent e) {
-                    if (!wincheck.getGameOver() && game.returnBoard()[0][col] == 0)
+                    if (!wincheck.getGameOver() && game.returnBoard()[row][col] == 0)
                         setBackground(new Color(230, 230, 230));
                 }
 
