@@ -60,6 +60,7 @@ public class GUI extends JFrame {
         statusPanel.add(scoreLabel);
 
         JPanel buttonPanel = new JPanel();
+        // maybe because the resetboard function cannot reset the color on the board since it is handled in gui? (maybe reset colors in gui too)
         buttonPanel.add(createButton("Reset Game", e -> game.resetBoard(false)));
         buttonPanel.add(createButton("New Match (Reset Scores)", e -> game.resetBoard(true)));
 
