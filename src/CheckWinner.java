@@ -1,4 +1,4 @@
-package src;
+package Connect4.src;
 
 public class CheckWinner {
     private static final int[][] direction = {{0, 1}, {1, 0}, {1, 1}, {-1, 1}}; //right, down, right down, right up
@@ -57,5 +57,14 @@ public class CheckWinner {
 
     public boolean getGameOver() {
         return gameOver;
+    }
+
+    public void gameOverSwitch(){
+        if(gameOver == true){
+            gameOver = false;
+        }
+        else{
+            gameOver = true;
+        }
     }
 }

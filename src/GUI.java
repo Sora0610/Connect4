@@ -207,8 +207,9 @@ public class GUI extends JFrame {
         } else {
             game.addYellow();
         }
-        //scoreLabel.setText("Red: " + game.getRed() + " | Yellow: " + game.getYellow());
-        //statusLabel.setText(wincheck.returnWinner(winner) + " wins!");
+        scoreLabel.setText("Red: " + game.getRed() + " | Yellow: " + game.getYellow());
+        statusLabel.setText(wincheck.returnWinner(winner) + " wins!");
+        wincheck.gameOverSwitch();
         showVictoryPopup(winner);
     }
 
