@@ -1,4 +1,5 @@
-package src;
+package Connect4.src;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -215,6 +216,7 @@ public class GUI extends JFrame {
         }
         scoreLabel.setText("Red: " + game.getRed() + " | Yellow: " + game.getYellow());
         statusLabel.setText(wincheck.returnWinner(winner) + " wins!");
+        wincheck.gameOverSwSitch();
         showVictoryPopup(winner);
     }
 

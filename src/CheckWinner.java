@@ -1,5 +1,6 @@
 package Connect4.src;
 
+
 public class CheckWinner {
     private static final int[][] direction = {{0, 1}, {1, 0}, {1, 1}, {-1, 1}}; //right, down, right down, right up
     private static final int rowNumber = 6;
@@ -59,7 +60,7 @@ public class CheckWinner {
         return gameOver;
     }
 
-    public void gameOverSwitch(){
+    public void gameOverSwSitch(){
         if(gameOver == true){
             gameOver = false;
         }
