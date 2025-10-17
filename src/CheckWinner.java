@@ -15,6 +15,7 @@ public class CheckWinner {
 
         for (int[] a : direction) {
             int count = 1 + counter(board, row, column, a[0], a[1], turns) + counter(board, row, column, -a[0], -a[1], turns);
+            System.out.println(count);
             if (count >= 4) {
                 gameOver = true;
                 return true;

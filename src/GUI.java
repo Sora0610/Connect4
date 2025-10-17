@@ -112,9 +112,10 @@ public class GUI extends JFrame {
                     if (rows == -1 || wincheck.getGameOver()) {
                         return;
                     }
-                
+                    //System.out.println("Column: " + column + " Rows: " + rows);
                     game.play(column, rows);
-                
+                    wincheck.checkBoard(game.returnBoard(), row, column);
+
                     if (!wincheck.getGameOver()) {
                         if (turn == 1) {
                             cells[rows][column].setColor(Color.RED);
@@ -123,9 +124,8 @@ public class GUI extends JFrame {
                         }
                         repaint();
                     }
-                
-                    if (wincheck.checkBoard(game.returnBoard(), row, column)) {
-                        int win = wincheck.returnWinnerNo(game.returnBoard(), row, column);
+                    int win = wincheck.returnWinnerNo(game.returnBoard(), row, column);
+                    if (win != 0) {
                         updateScoreAndDisplay(win);
                         return;
                     }
