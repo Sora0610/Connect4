@@ -192,7 +192,7 @@ public class GUI extends JFrame {
 
         dialog.add(main);
         dialog.pack();
-        dialog.setLocationRelativeTo(this);
+        dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
     }
 
