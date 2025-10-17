@@ -25,6 +25,7 @@ public class GUI extends JFrame {
         add(createControlPanel(), BorderLayout.SOUTH);
 
         setSize(700, 700);
+        setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
     }
