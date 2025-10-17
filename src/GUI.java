@@ -219,24 +219,24 @@ public class GUI extends JFrame {
     }
 
     private void refreshBoardFromModel(boolean condition) {
-    int[][] board = game.returnBoard();
-    for (int r = 0; r < ROWS; r++) {
-        for (int c = 0; c < COLS; c++) {
-            if (board[r][c] == 0) {
-                cells[r][c].setColor(Color.WHITE);
-            } else if (board[r][c] == 1) {
-                cells[r][c].setColor(Color.RED);
-            } else {
-                cells[r][c].setColor(Color.YELLOW);
+        int[][] board = game.returnBoard();
+        for (int r = 0; r < ROWS; r++) {
+            for (int c = 0; c < COLS; c++) {
+                if (board[r][c] == 0) {
+                    cells[r][c].setColor(Color.WHITE);
+                } else if (board[r][c] == 1) {
+                    cells[r][c].setColor(Color.RED);
+                } else {
+                    cells[r][c].setColor(Color.YELLOW);
+                }
             }
         }
+        if (condition) {
+            scoreLabel.setText("Red: 0 | Yellow: 0");
+        }
+        statusLabel.setText("Red's turn");
+        repaint();
     }
-    if (condition) {
-        scoreLabel.setText("Red: 0 | Yellow: 0");
-    }
-    statusLabel.setText("Red's turn");
-    repaint();
-}
 
     private int winnerColor(int winner){
         if(winner == 1){
