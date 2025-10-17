@@ -1,4 +1,4 @@
-package src;
+package Connect4.src;
 import javax.swing.SwingUtilities;
 
 public class Main {

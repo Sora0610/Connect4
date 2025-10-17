@@ -1,4 +1,4 @@
-package src;
+package Connect4.src;
 import java.util.HashMap;
 
 public class Connect4 {
@@ -6,17 +6,12 @@ public class Connect4 {
     private int turns;
     private int redScore;
     private int yellowScore;
-    // private HashMap<Integer, Character> symbols;
     
     public Connect4() {
         board = new int[6][7];
         turns = 1;
         redScore = 0;
         yellowScore = 0;
-        // symbols = new HashMap<>();
-        // symbols.put(0, '□');
-        // symbols.put(1, '●');
-        // symbols.put(-1, '○');
     }
 
     // maybe used later

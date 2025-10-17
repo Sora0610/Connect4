@@ -1,4 +1,4 @@
-package src;
+package Connect4.src;
 
 
 public class CheckWinner {

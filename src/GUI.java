@@ -1,4 +1,4 @@
-package src;
+package Connect4.src;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,10 +63,10 @@ public class GUI extends JFrame {
 
         JPanel buttonPanel = new JPanel();
         // maybe because the resetboard function cannot reset the color on the board since it is handled in gui? (maybe reset colors in gui too)
-        buttonPanel.add(createButton("Reset Game", e -> {
-            game.resetBoard(false); 
-            refreshBoardFromModel(false);
-        }));
+        // buttonPanel.add(createButton("Reset Game", e -> {
+        //     game.resetBoard(false); 
+        //     refreshBoardFromModel(false);
+        // }));
         buttonPanel.add(createButton("New Match (Reset Scores)", e -> {
             game.resetBoard(true); 
             refreshBoardFromModel(true);
@@ -114,7 +114,6 @@ public class GUI extends JFrame {
                     }
                     //System.out.println("Column: " + column + " Rows: " + rows);
                     game.play(column, processedRows);
-                    wincheck.checkBoard(game.returnBoard(), processedRows, column);
 
                     if (!wincheck.getGameOver()) {
                         if (turn == 1) {
@@ -124,7 +123,9 @@ public class GUI extends JFrame {
                         }
                         repaint();
                     }
+                    
                     int win = wincheck.returnWinnerNo(game.returnBoard(), processedRows, column);
+                    
                     if (win != 0) {
                         updateScoreAndDisplay(win);
                         return;
@@ -184,7 +185,7 @@ public class GUI extends JFrame {
         main.add(makeCenteredLabel("Score: Red " + game.getRed() + " - " + game.getYellow() + " Yellow", 20));
         main.add(Box.createVerticalStrut(30));
 
-        JButton close = createButton("Continue", e -> dialog.dispose());
+        JButton close = createButton("Continue", e -> {dialog.dispose(); game.resetBoard(false);refreshBoardFromModel(false);});
         close.setFont(new Font("Arial", Font.BOLD, 18));
         JPanel bp = new JPanel();
         bp.setOpaque(false);
