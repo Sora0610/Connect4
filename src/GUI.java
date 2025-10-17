@@ -1,4 +1,4 @@
-package src;
+package Connect4.src;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -61,8 +61,8 @@ public class GUI extends JFrame {
 
         JPanel buttonPanel = new JPanel();
         // maybe because the resetboard function cannot reset the color on the board since it is handled in gui? (maybe reset colors in gui too)
-        buttonPanel.add(createButton("Reset Game", e -> game.resetBoard(false)));
-        buttonPanel.add(createButton("New Match (Reset Scores)", e -> game.resetBoard(true)));
+        buttonPanel.add(createButton("Reset Game", e -> {game.resetBoard(false); refreshBoardFromModel();}));
+        buttonPanel.add(createButton("New Match (Reset Scores)", e -> {game.resetBoard(true); refreshBoardFromModel();}));
 
         controlPanel.add(statusPanel);
         controlPanel.add(buttonPanel);
@@ -211,6 +211,22 @@ public class GUI extends JFrame {
         //statusLabel.setText(wincheck.returnWinner(winner) + " wins!");
         showVictoryPopup(winner);
     }
+
+    private void refreshBoardFromModel() {
+    int[][] board = game.returnBoard();
+    for (int r = 0; r < ROWS; r++) {
+        for (int c = 0; c < COLS; c++) {
+            if (board[r][c] == 0) {
+                cells[r][c].setColor(Color.WHITE);
+            } else if (board[r][c] == 1) {
+                cells[r][c].setColor(Color.RED);
+            } else {
+                cells[r][c].setColor(Color.YELLOW);
+            }
+        }
+    }
+    repaint();
+}
 
     private int winnerColor(int winner){
         if(winner == 1){
