@@ -106,25 +106,25 @@ public class GUI extends JFrame {
                 public void mouseClicked(MouseEvent e) {
                     int turn = game.getTurns();
                     int column = col;
-                    int rows = game.calculate(column);
+                    int processedRows = game.calculate(column);
                 
                     // Check if the column is full
-                    if (rows == -1 || wincheck.getGameOver()) {
+                    if (processedRows == -1 || wincheck.getGameOver()) {
                         return;
                     }
                     //System.out.println("Column: " + column + " Rows: " + rows);
-                    game.play(column, rows);
-                    wincheck.checkBoard(game.returnBoard(), row, column);
+                    game.play(column, processedRows);
+                    wincheck.checkBoard(game.returnBoard(), processedRows, column);
 
                     if (!wincheck.getGameOver()) {
                         if (turn == 1) {
-                            cells[rows][column].setColor(Color.RED);
+                            cells[processedRows][column].setColor(Color.RED);
                         } else {
-                            cells[rows][column].setColor(Color.YELLOW);
+                            cells[processedRows][column].setColor(Color.YELLOW);
                         }
                         repaint();
                     }
-                    int win = wincheck.returnWinnerNo(game.returnBoard(), row, column);
+                    int win = wincheck.returnWinnerNo(game.returnBoard(), processedRows, column);
                     if (win != 0) {
                         updateScoreAndDisplay(win);
                         return;
