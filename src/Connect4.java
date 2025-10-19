@@ -101,4 +101,17 @@ public class Connect4 {
     public int getTurns() {
         return this.turns;
     }
+
+    public boolean hasZero() {
+        boolean zero = false;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (board[i][j] == 0) {
+                    zero = true;
+                    return zero;
+                }
+            }
+        }
+        return zero;
+    }
 }
