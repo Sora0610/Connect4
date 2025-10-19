@@ -13,7 +13,6 @@ public class Connect4 {
         yellowScore = 0;
     }
 
-    // maybe used later
     public int calculate(int x) {
         int column = x;
         if (column < 0 || column >= 7) {
@@ -25,7 +24,6 @@ public class Connect4 {
                 return row;
             }
         }
-        // will be invalid in play function
         return -1;
     }
 
@@ -56,16 +54,6 @@ public class Connect4 {
         return 0;
     }
 
-    //print the board
-    // public void printBoard() {
-    //     for (int i = 0; i < 6; i++) {
-    //         for (int j = 0; j < 7; j++) {
-    //             System.out.print(symbols.get(board[i][j]));
-    //         }
-    //         System.out.println();
-    //     }
-    // }
-
     public int[][] returnBoard() {
         return this.board;
     }
@@ -76,8 +64,6 @@ public class Connect4 {
             redScore = 0;
             yellowScore = 0;
         }
-
-        //gameOver = false;
         turns = 1;
     }
 
