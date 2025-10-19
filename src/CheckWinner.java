@@ -59,11 +59,6 @@ public class CheckWinner {
     }
 
     public void gameOverSwitch(){
-        if(gameOver == true){
-            gameOver = false;
-        }
-        else{
-            gameOver = true;
-        }
+        gameOver = false;
     }
 }

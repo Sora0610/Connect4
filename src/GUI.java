@@ -113,7 +113,7 @@ public class GUI extends JFrame {
                         return;
                     }
 
-                    System.out.println("Column: " + column + " Rows: " + processedRows);
+                    //System.out.println("Column: " + column + " Rows: " + processedRows);
                     game.play(column, processedRows);
 
                     if (!wincheck.getGameOver()) {
