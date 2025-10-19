@@ -113,13 +113,8 @@ public class GUI extends JFrame {
                         return;
                     }
 
-                    //System.out.println("Column: " + column + " Rows: " + rows);
+                    System.out.println("Column: " + column + " Rows: " + processedRows);
                     game.play(column, processedRows);
-
-                    if(!game.hasZero()){
-                        updateScoreAndDisplay();
-                        return;
-                    }
 
                     if (!wincheck.getGameOver()) {
                         if (turn == 1) {
@@ -130,6 +125,11 @@ public class GUI extends JFrame {
                         repaint();
                     }
                     
+                    if(!game.hasZero()){
+                        updateScoreAndDisplay();
+                        return;
+                    }
+
                     int win = wincheck.returnWinnerNo(game.returnBoard(), processedRows, column);
                     
                     if (win != 0) {
