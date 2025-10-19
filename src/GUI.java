@@ -112,8 +112,14 @@ public class GUI extends JFrame {
                     if (processedRows == -1 || wincheck.getGameOver()) {
                         return;
                     }
+
                     //System.out.println("Column: " + column + " Rows: " + rows);
                     game.play(column, processedRows);
+
+                    if(!game.hasZero()){
+                        updateScoreAndDisplay();
+                        return;
+                    }
 
                     if (!wincheck.getGameOver()) {
                         if (turn == 1) {
@@ -178,9 +184,49 @@ public class GUI extends JFrame {
         main.setPreferredSize(new Dimension(400, 300));
 
         main.add(Box.createVerticalStrut(40));
-        main.add(makeCenteredLabel("🎉🎉🎉", 48));
+        main.add(makeCenteredLabel("Congratulations!", 20));
         main.add(Box.createVerticalStrut(20));
         main.add(makeCenteredLabel(wincheck.returnWinner(winner) + " Wins!", 42, new Color(180, winnerColor(winner), 0)));
+        main.add(Box.createVerticalStrut(30));
+        main.add(makeCenteredLabel("Score: Red " + game.getRed() + " - " + game.getYellow() + " Yellow", 20));
+        main.add(Box.createVerticalStrut(30));
+
+        JButton close = createButton("Continue", e -> {dialog.dispose(); game.resetBoard(false);refreshBoardFromModel(false);});
+        close.setFont(new Font("Arial", Font.BOLD, 18));
+        JPanel bp = new JPanel();
+        bp.setOpaque(false);
+        bp.add(close);
+        main.add(bp);
+
+        dialog.add(main);
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);
+    }
+
+    private void showDrawPopup() {
+        JDialog dialog = new JDialog(this, "Draw!", true);
+        dialog.setUndecorated(true);
+        dialog.setLayout(new BorderLayout());
+
+        JPanel main = new JPanel() {
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                Color c1, c2;
+                c1 = new Color(0, 128, 0);
+                c2 = new Color(0, 255, 0);
+                g2d.setPaint(new GradientPaint(0, 0, c1, 0, getHeight(), c2));
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
+        main.setBorder(BorderFactory.createLineBorder(Color.GRAY, 3));
+        main.setPreferredSize(new Dimension(400, 300));
+
+        main.add(Box.createVerticalStrut(40));
+        main.add(Box.createVerticalStrut(20));
+        main.add(makeCenteredLabel(" Draw!", 42, new Color(0, 0, 0)));
         main.add(Box.createVerticalStrut(30));
         main.add(makeCenteredLabel("Score: Red " + game.getRed() + " - " + game.getYellow() + " Yellow", 20));
         main.add(Box.createVerticalStrut(30));
@@ -218,8 +264,15 @@ public class GUI extends JFrame {
         }
         scoreLabel.setText("Red: " + game.getRed() + " | Yellow: " + game.getYellow());
         statusLabel.setText(wincheck.returnWinner(winner) + " wins!");
-        wincheck.gameOverSwSitch();
+        wincheck.gameOverSwitch();
         showVictoryPopup(winner);
+    }
+    //drawUpdate
+    private void updateScoreAndDisplay() {
+        scoreLabel.setText("Red: " + game.getRed() + " | Yellow: " + game.getYellow());
+        statusLabel.setText("Draw!");
+        wincheck.gameOverSwitch();
+        showDrawPopup();
     }
 
     private void refreshBoardFromModel(boolean condition) {

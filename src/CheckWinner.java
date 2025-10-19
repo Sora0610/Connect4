@@ -58,7 +58,7 @@ public class CheckWinner {
         return gameOver;
     }
 
-    public void gameOverSwSitch(){
+    public void gameOverSwitch(){
         if(gameOver == true){
             gameOver = false;
         }

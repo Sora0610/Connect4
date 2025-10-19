@@ -1,5 +1,4 @@
 package src;
-import java.util.HashMap;
 
 public class Connect4 {
     private int[][] board;
