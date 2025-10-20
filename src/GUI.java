@@ -95,7 +95,7 @@ public class GUI extends JFrame {
 
             addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent e) {
-                    if (!wincheck.getGameOver() && game.returnBoard()[row][col] == 0) {
+                    if (!isAnimating && !wincheck.getGameOver() && game.returnBoard()[row][col] == 0) {
                         int turn = game.getTurns();
                         if (turn == 1) {
                             setBackground(new Color(255, 150, 150));
@@ -106,11 +106,15 @@ public class GUI extends JFrame {
                 }
 
                 public void mouseExited(MouseEvent e) {
-                    if (game.returnBoard()[row][col] == 0)
+                    if (!isAnimating && game.returnBoard()[row][col] == 0)
                         setBackground(Color.WHITE);
                 }
 
                 public void mouseClicked(MouseEvent e) {
+                    if (isAnimating) {
+                        return;
+                    }
+
                     int turn = game.getTurns();
                     int column = col;
                     int processedRows = game.calculate(column);
@@ -120,36 +124,45 @@ public class GUI extends JFrame {
                         return;
                     }
 
-                    //System.out.println("Column: " + column + " Rows: " + processedRows);
-                    game.play(column, processedRows);
-
-                    if (!wincheck.getGameOver()) {
-                        if (turn == 1) {
-                            cells[processedRows][column].setColor(Color.RED);                           
-                        } else {
-                            cells[processedRows][column].setColor(Color.YELLOW);
-                        }
-                        cells[processedRows][column].setBackground(Color.WHITE);
-                        repaint();
-                    }
-
-                    if(!game.hasZero()){
-                        updateScoreAndDisplay();
-                        return;
-                    }
-                    
-                    int win = wincheck.returnWinnerNo(game.returnBoard(), processedRows, column);
-                    
-                    if (win != 0) {
-                        updateScoreAndDisplay(win);
-                        return;
-                    }
-                
-                    if (game.getTurns() == 1) {
-                        statusLabel.setText("Red's turn");
+                    Color discColor;
+                    if (turn == 1) {
+                        discColor = Color.RED;
                     } else {
-                        statusLabel.setText("Yellow's turn");
+                        discColor = Color.YELLOW;
                     }
+
+                    dropDiscAnimated(column, processedRows, discColor, () -> {
+                        game.play(column, processedRows);
+
+                        if (!wincheck.getGameOver()) {
+                            if (turn == 1) {
+                                cells[processedRows][column].setColor(Color.RED);                           
+                            } else {
+                                cells[processedRows][column].setColor(Color.YELLOW);
+                            }
+                            cells[processedRows][column].setBackground(Color.WHITE);
+                            repaint();
+                        }
+
+                        if(!game.hasZero()){
+                            updateScoreAndDisplay();
+                            return;
+                        }
+                        
+                        int win = wincheck.returnWinnerNo(game.returnBoard(), processedRows, column);
+                        
+                        if (win != 0) {
+                            updateScoreAndDisplay(win);
+                            return;
+                        }
+                    
+                        if (game.getTurns() == 1) {
+                            statusLabel.setText("Red's turn");
+                        } else {
+                            statusLabel.setText("Yellow's turn");
+                        }
+                    });
+                    //System.out.println("Column: " + column + " Rows: " + processedRows);
                 }
             });
         }
@@ -303,6 +316,39 @@ public class GUI extends JFrame {
         repaint();
     }
 
+    private void dropDiscAnimated(int column, int targetRow, Color discColor, Runnable onDone) {
+        isAnimating = true;
+
+        final int[] cur = { -1};
+
+        Timer timer = new Timer(40, null);
+
+        timer.addActionListener(e -> {
+            if (cur[0] >= 0 && cur[0] < targetRow && isEmpty(cur[0], column)) {
+                cells[cur[0]][column].setColor(Color.WHITE);
+            }
+
+            cur[0]++;
+
+            if (cur[0] >= targetRow) {
+                cells[targetRow][column].setColor(discColor);
+                timer.stop();
+                isAnimating = false;
+
+                if (onDone != null) {
+                    onDone.run();
+                }
+                return;
+            }
+
+            if (isEmpty(cur[0], column)) {
+                cells[cur[0]][column].setColor(discColor);
+            }
+        });
+
+        timer.start();
+    }
+    
     private int winnerColor(int winner){
         if(winner == 1){
             return 0;
