@@ -12,6 +12,7 @@ public class GUI extends JFrame {
     private final JLabel scoreLabel = new JLabel("Red: 0 | Yellow: 0");
     private Connect4 game;
     private CheckWinner wincheck;
+    private boolean isAnimating = false;
 
     public GUI(Connect4 game, CheckWinner wincheck) {
         this.game = game;
@@ -95,7 +96,12 @@ public class GUI extends JFrame {
             addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent e) {
                     if (!wincheck.getGameOver() && game.returnBoard()[row][col] == 0) {
-                        setBackground(new Color(230, 230, 230));
+                        int turn = game.getTurns();
+                        if (turn == 1) {
+                            setBackground(new Color(255, 150, 150));
+                        } else {
+                            setBackground(new Color(255, 240, 120));
+                        }
                     }
                 }
 
@@ -302,5 +308,9 @@ public class GUI extends JFrame {
             return 0;
         }
         return 150;
+    }
+
+    private boolean isEmpty(int r, int c) {
+        return game.returnBoard()[r][c] == 0;
     }
 }
