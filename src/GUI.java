@@ -158,8 +158,14 @@ public class GUI extends JFrame {
                     
                         if (game.getTurns() == 1) {
                             statusLabel.setText("Red's turn");
+                            if (processedRows != row) {
+                                setBackground(new Color(255, 150, 150));
+                            }
                         } else {
                             statusLabel.setText("Yellow's turn");
+                            if (processedRows != row) {
+                                setBackground(new Color(255, 240, 120));
+                            }
                         }
                     });
                     //System.out.println("Column: " + column + " Rows: " + processedRows);
