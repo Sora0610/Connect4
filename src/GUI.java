@@ -13,7 +13,7 @@ public class GUI extends JFrame {
     private Connect4 game;
     private CheckWinner wincheck;
     private boolean isAnimating = false;
-
+    //clara
     public GUI(Connect4 game, CheckWinner wincheck) {
         this.game = game;
         this.wincheck = wincheck;
@@ -83,6 +83,8 @@ public class GUI extends JFrame {
         btn.addActionListener(action);
         return btn;
     }
+
+    // josh
     //cellpanels
     private class CellPanel extends JPanel {
         private final int row, col;
@@ -159,12 +161,12 @@ public class GUI extends JFrame {
                     
                         if (game.getTurns() == 1) {
                             statusLabel.setText("Red's turn");
-                            if (processedRows != row) {
+                            if (processedRows != row && processedRows != 0) {
                                 cells[processedRows - 1][col].setColor(new Color(255, 150, 150));
                             }
                         } else {
                             statusLabel.setText("Yellow's turn");
-                            if (processedRows != row) {
+                            if (processedRows != row && processedRows != 0) {
                                 cells[processedRows - 1][col].setColor(new Color(255, 240, 120));
                             }
                         }
@@ -185,6 +187,7 @@ public class GUI extends JFrame {
             repaint();
         }
     }
+    //sora
     //Victory Pop Out
         private void showVictoryPopup(int winner) {
         JDialog dialog = new JDialog(this, "Victory!", true);
@@ -243,7 +246,7 @@ public class GUI extends JFrame {
                 Graphics2D g2d = (Graphics2D) g;
                 Color c1, c2;
                 c1 = new Color(0, 128, 0);
-                c2 = new Color(0, 255, 0);
+                c2 = new Color(10, 255, 0);
                 g2d.setPaint(new GradientPaint(0, 0, c1, 0, getHeight(), c2));
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
@@ -284,6 +287,7 @@ public class GUI extends JFrame {
         return lbl;
     }
 
+    //josh
     private void updateScoreAndDisplay(int winner) {
         if (winner == 1) {
             game.addRed();
@@ -303,6 +307,7 @@ public class GUI extends JFrame {
         showDrawPopup();
     }
 
+    //sora
     private void refreshBoardFromModel(boolean condition) {
         int[][] board = game.returnBoard();
         for (int r = 0; r < ROWS; r++) {
@@ -323,6 +328,7 @@ public class GUI extends JFrame {
         repaint();
     }
 
+    //josh
     private void dropDiscAnimated(int column, int targetRow, Color discColor, Runnable onDone) {
         isAnimating = true;
 
