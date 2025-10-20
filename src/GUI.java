@@ -98,16 +98,17 @@ public class GUI extends JFrame {
                     if (!isAnimating && !wincheck.getGameOver() && game.returnBoard()[row][col] == 0) {
                         int turn = game.getTurns();
                         if (turn == 1) {
-                            setBackground(new Color(255, 150, 150));
+                            cells[game.calculate(col)][col].setColor(new Color(255, 150, 150));
                         } else {
-                            setBackground(new Color(255, 240, 120));
+                            cells[game.calculate(col)][col].setColor(new Color(255, 240, 120));
                         }
                     }
                 }
 
                 public void mouseExited(MouseEvent e) {
-                    if (!isAnimating && game.returnBoard()[row][col] == 0)
-                        setBackground(Color.WHITE);
+                    if (!isAnimating && game.returnBoard()[row][col] == 0){
+                        cells[game.calculate(col)][col].setColor(Color.WHITE);
+                    }
                 }
 
                 public void mouseClicked(MouseEvent e) {
@@ -159,12 +160,12 @@ public class GUI extends JFrame {
                         if (game.getTurns() == 1) {
                             statusLabel.setText("Red's turn");
                             if (processedRows != row) {
-                                setBackground(new Color(255, 150, 150));
+                                cells[processedRows - 1][col].setColor(new Color(255, 150, 150));
                             }
                         } else {
                             statusLabel.setText("Yellow's turn");
                             if (processedRows != row) {
-                                setBackground(new Color(255, 240, 120));
+                                cells[processedRows - 1][col].setColor(new Color(255, 240, 120));
                             }
                         }
                     });
