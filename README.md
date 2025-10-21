@@ -1,4 +1,4 @@
-#Connect 4 Game in Java
+# Connect 4 Game in Java
 How to start 
 ```
   git clone https://github.com/Sora0610/Connect4.git
