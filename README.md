@@ -4,6 +4,7 @@ Connect 4 Game made for Computer Science and Communications Engineering Laborato
 ```
   git clone https://github.com/Sora0610/Connect4.git
 ```
+If you are not on the correct directory, execute the following command in the terminal:
 ```
   cd src
 ```
