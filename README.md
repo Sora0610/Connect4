@@ -2,6 +2,7 @@
 ## How to start 
 ```
   git clone https://github.com/Sora0610/Connect4.git
+  cd src
 ```
   Then just simply execute the code in a Java environment
 
