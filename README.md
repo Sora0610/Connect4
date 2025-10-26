@@ -6,7 +6,7 @@ Connect 4 Game made for Computer Science and Communications Engineering Laborato
 ```
 If you are not on the correct directory, execute the following command in the terminal:
 ```
-  cd src
+  cd Connect4/src
 ```
   Then just simply execute the code in a Java environment
 
