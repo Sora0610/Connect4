@@ -1,6 +1,7 @@
 # Connect 4 Game in Java
 Connect 4 Game made for Computer Science and Communications Engineering Laboratory A (Algorithms and Data Structure) course, Waseda University.
 ## How to start 
+Enter the following command in your terminal to clone the repository:
 ```
   git clone https://github.com/Sora0610/Connect4.git
 ```
